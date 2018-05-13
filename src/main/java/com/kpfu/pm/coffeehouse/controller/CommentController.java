@@ -34,14 +34,14 @@ public class CommentController extends ResponseCreator {
         return createGoodResponse();
     }
 
-    @ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
+//    @ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
     @RequestMapping(value = "/comment/{coffeehouseId}/coffeehouse", method = RequestMethod.GET)
     public ResponseEntity<ApiResponse<List<CommentResponseDto>>> getCommentsOfCoffeeHouse(@PathVariable long coffeehouseId) {
 
         return createGoodResponse(commentService.getAllByCoffeeHouseId(coffeehouseId));
     }
 
-    @ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
+ //    @ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
     @RequestMapping(value = "/comment/{barmanId}/barman", method = RequestMethod.GET)
     public ResponseEntity<ApiResponse<List<CommentResponseDto>>> getCommentsOfBarman(@PathVariable long barmanId) {
 

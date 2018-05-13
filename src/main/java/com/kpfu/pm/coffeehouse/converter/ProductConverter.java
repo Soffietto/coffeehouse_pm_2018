@@ -10,6 +10,14 @@ public class ProductConverter {
         productResponseDto.setDescription(product.getDescription());
         productResponseDto.setName(product.getName());
         productResponseDto.setPrice(product.getPrice());
+
+
+
+
+
         return productResponseDto;
     }
+
+
+
 }

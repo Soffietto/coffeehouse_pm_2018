@@ -5,7 +5,7 @@ import com.kpfu.pm.coffeehouse.entity.Barman;
 
 public class BarmanConverter {
 
-    public static BarmanResponseDto toProductResponseDto(Barman barman) {
+    public static BarmanResponseDto toBarmanResponseDto(Barman barman) {
         BarmanResponseDto barmanResponseDto = new BarmanResponseDto();
         barmanResponseDto.setId(barman.getId());
         barmanResponseDto.setName(barman.getName());

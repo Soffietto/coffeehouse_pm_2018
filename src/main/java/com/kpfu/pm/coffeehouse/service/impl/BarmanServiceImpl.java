@@ -37,13 +37,13 @@ public class BarmanServiceImpl implements BarmanService {
     @Override
     public List<BarmanResponseDto> getAllByCoffeeHouseId(Long coffeeHouseId) {
         List<Barman> barmen = barmanRepository.getAllByCoffeeHouseId(coffeeHouseId);
-        return barmen.stream().map(BarmanConverter::toProductResponseDto).
+        return barmen.stream().map(BarmanConverter::toBarmanResponseDto).
                 collect(Collectors.toList());
     }
 
     @Override
     public Barman findOneById(Long barmanId) {
-        return barmanRepository.getOne(barmanId);
+        return barmanRepository.getBarmanById(barmanId);
     }
 
     @Override

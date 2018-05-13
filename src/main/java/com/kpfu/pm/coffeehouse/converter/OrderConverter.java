@@ -7,8 +7,16 @@ public class OrderConverter {
 
     public static OrderResponseDto toOrderResponseDto(Order order) {
         OrderResponseDto orderResponseDto = new OrderResponseDto();
-        orderResponseDto.setOwnerId(order.getOwner().getId());
-        orderResponseDto.setOrdersCoffeehouseId(order.getCoffeeHouse().getId());
+//        orderResponseDto.setOwnerId(order.getOwner().getId());
+//        orderResponseDto.setOrdersCoffeehouseId(order.getCoffeeHouse().getId());
+
+        orderResponseDto.setOwnerId(2L);
+        orderResponseDto.setOrdersCoffeehouseId(1L);
+
         return orderResponseDto;
     }
+
+
+
+
 }

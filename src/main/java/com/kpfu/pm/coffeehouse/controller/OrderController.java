@@ -19,7 +19,7 @@ public class OrderController extends ResponseCreator {
     @Autowired
     private OrderService orderService;
 
-    @ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
+//    @ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
     @RequestMapping(value = "/order", method = RequestMethod.POST)
     public ResponseEntity<ApiResponse<String>> createOrder(@RequestBody OrderDto orderDto) {
         orderService.createOrder(orderDto);
@@ -27,7 +27,7 @@ public class OrderController extends ResponseCreator {
     }
 
 
-    @ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
+//    @ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
     @RequestMapping(value = "/order/{coffeehouseId}", method = RequestMethod.GET)
     public ResponseEntity<ApiResponse<List<OrderResponseDto>>> getOrders(@PathVariable long coffeehouseId) {
 

@@ -28,7 +28,7 @@ public class ProductServiceImpl implements ProductService {
     private CoffeeHouseService coffeeHouseService;
 
     @Override
-    public void createProduct(ProductDto productDto, long coffeehouseId) throws Exception{
+    public void createProduct(ProductDto productDto, Long coffeehouseId) throws Exception{
         Product product = new Product();
         product.setName(productDto.getName());
         product.setPrice(productDto.getPrice());
@@ -49,7 +49,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductResponseDto> getAllByCoffeeHouse(long coffeeHouseId) {
+    public List<ProductResponseDto> getAllByCoffeeHouse(Long coffeeHouseId) {
         CoffeeHouse coffeeHouse = coffeeHouseService.findOneById(coffeeHouseId);
         return coffeeHouse.getProducts().stream().map(ProductConverter::toProductResponseDto).
                 collect(Collectors.toList());

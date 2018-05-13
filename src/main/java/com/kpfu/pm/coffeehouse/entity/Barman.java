@@ -4,6 +4,7 @@ package com.kpfu.pm.coffeehouse.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -21,4 +22,7 @@ public class Barman extends AbstractEntity {
 
     @Column(name = "surname")
     private String surname;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "barman")
+    private Set<BarmanComment> barmanComments;
 }

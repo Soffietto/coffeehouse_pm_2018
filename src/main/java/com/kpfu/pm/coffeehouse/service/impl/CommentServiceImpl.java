@@ -1,5 +1,6 @@
 package com.kpfu.pm.coffeehouse.service.impl;
 
+import com.kpfu.pm.coffeehouse.converter.CommentConverter;
 import com.kpfu.pm.coffeehouse.dto.CommentDto;
 import com.kpfu.pm.coffeehouse.dto.response.CommentResponseDto;
 import com.kpfu.pm.coffeehouse.entity.*;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CommentServiceImpl implements CommentService {
@@ -40,8 +42,8 @@ public class CommentServiceImpl implements CommentService {
         CoffeeHouse coffeeHouse = coffeeHouseService.findOneById(commentDto.getAddressantId());
         coffeeHouseComment.setCoffeeHouse(coffeeHouse);
 
-        User user = securityService.getCurrentUser();
-        coffeeHouseComment.setSender(user);
+//        User user = securityService.getCurrentUser();
+//        coffeeHouseComment.setSender(user);
 
         coffeeHouseCommentReposiory.save(coffeeHouseComment);
 
@@ -56,8 +58,8 @@ public class CommentServiceImpl implements CommentService {
 
         barmanComment.setBarman(barman);
 
-        User user = securityService.getCurrentUser();
-        barmanComment.setSender(user);
+//        User user = securityService.getCurrentUser();
+//        barmanComment.setSender(user);
 
         barmanCommentRepository.save(barmanComment);
     }
@@ -65,30 +67,18 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<CommentResponseDto> getAllByCoffeeHouseId(Long coffeeHouseId) {
-//        CoffeeHouse coffeeHouse = coffeeHouseService.findOneById(coffeeHouseId);
-//        return coffeeHouse.getCoffeeHouseComments().stream().map(this::toCommentResponseDto).
-//                collect(Collectors.toList());
-//        TODO: Переделать
-        return null;
+        CoffeeHouse coffeeHouse = coffeeHouseService.findOneById(coffeeHouseId);
+        return coffeeHouse.getCoffeeHouseComments().stream().map(CommentConverter::toCoffeeHouseCommentResponseDto).
+                collect(Collectors.toList());
     }
 
     @Override
     public List<CommentResponseDto> getAllByBarmanId(Long barmanId) {
-//        Barman barman = barmanService.findOneById(barmanId);
-//
-//        return barman.getBarmanComments().stream().map(this::toCommentResponseDto).
-//                collect(Collectors.toList());
-//      TODO: переделать
-        return null;
+        Barman barman = barmanService.findOneById(barmanId);
+
+        return barman.getBarmanComments().stream().map(CommentConverter::toBarmanCommentResponseDto).
+                collect(Collectors.toList());
 
     }
-
-//    CommentResponseDto toCommentResponseDto(Comment comment) {
-//        CommentResponseDto commentResponseDto = new CommentResponseDto();
-//        commentResponseDto.setCommentText(comment.getComment_text());
-//        commentResponseDto.setOwner_name(comment.getOwner().getUsername());
-//        return commentResponseDto;
-//    }
-//      TODO: переделать
 
 }

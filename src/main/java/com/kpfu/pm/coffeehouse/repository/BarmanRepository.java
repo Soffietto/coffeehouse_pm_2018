@@ -8,4 +8,6 @@ import java.util.List;
 public interface BarmanRepository extends JpaRepository<Barman,Long> {
 
     List<Barman> getAllByCoffeeHouseId(Long coffeeHouseId);
+
+    Barman getBarmanById(Long id);
 }

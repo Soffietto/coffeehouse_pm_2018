@@ -19,27 +19,38 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
-    private UserDetailsService userDetailsService;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+//    private UserDetailsService userDetailsService;
+//    private BCryptPasswordEncoder bCryptPasswordEncoder;
+//
+//    @Autowired
+//    public SecurityConfiguration(UserDetailsService userDetailsService,
+//                                 BCryptPasswordEncoder bCryptPasswordEncoder) {
+//        this.userDetailsService = userDetailsService;
+//        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+//    }
+//
+//
+//    @Override
+//    protected void configure(HttpSecurity httpSecurity) throws Exception {
+////        httpSecurity.csrf().disable().authorizeRequests().and()
+////                .addFilterBefore(new JWTLoginFilter("/sign_in",authenticationManager()),
+////                        UsernamePasswordAuthenticationFilter.class).
+////                addFilterBefore(new JWTAuthenticationFilter(),UsernamePasswordAuthenticationFilter.class);
+//    }
+//
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+//        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
+//    }
 
-    @Autowired
-    public SecurityConfiguration(UserDetailsService userDetailsService,
-                                 BCryptPasswordEncoder bCryptPasswordEncoder) {
-        this.userDetailsService = userDetailsService;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-    }
+
 
 
     @Override
-    protected void configure(HttpSecurity httpSecurity) throws Exception {
-//        httpSecurity.csrf().disable().authorizeRequests().and()
-//                .addFilterBefore(new JWTLoginFilter("/sign_in",authenticationManager()),
-//                        UsernamePasswordAuthenticationFilter.class).
-//                addFilterBefore(new JWTAuthenticationFilter(),UsernamePasswordAuthenticationFilter.class);
-    }
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable()
+                .authorizeRequests()
+                //disabling security only for several sprints
+                .antMatchers("/**").permitAll();
     }
 }

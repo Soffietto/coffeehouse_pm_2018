@@ -9,20 +9,18 @@ import com.kpfu.pm.coffeehouse.util.ResponseCreator;
 import io.swagger.annotations.ApiImplicitParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
 public class ProductController extends ResponseCreator {
 
     @Autowired
     ProductService productService;
 
 
-    @ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
+//    @ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
     @RequestMapping(value = "/product/{coffeehouseId}", method = RequestMethod.POST)
     public ResponseEntity<ApiResponse<String>> createProduct(@RequestBody ProductDto productDto, @PathVariable long coffeehouseId) {
         try{
@@ -33,9 +31,9 @@ public class ProductController extends ResponseCreator {
         return createGoodResponse();
     }
 
-    @ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
+//    @ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
     @RequestMapping(value = "/product/{coffeehouseId}", method = RequestMethod.GET)
-    public ResponseEntity<ApiResponse<List<ProductResponseDto>>> getProducts(@PathVariable long coffeehouseId) {
+    public ResponseEntity<ApiResponse<List<ProductResponseDto>>> getProductsByCoffeeHouse(@PathVariable long coffeehouseId) {
 
         return createGoodResponse(productService.getAllByCoffeeHouse(coffeehouseId));
     }
